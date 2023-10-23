@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LevoApps.Common.Status
+namespace LevoApps.Common
 {
     /// <summary>
-    /// Comparte el estado de operación de un método que devuelva un resultado.
+    /// Shares the operation state of a method that returns a result.
     /// </summary>
     public class Response<T> : Response
     {
         /// <summary>
-        /// Devuelve los datos que se requieran proporcionar.
+        /// Returns the data required to be provided.
         /// </summary>
         public T Data { get; set; } = default!;
 
         /// <summary>
-        /// Devuelve un resultado satisfactorio de un método con su información proporcionada.
+        /// Returns a successful result of a method with its provided information.
         /// </summary>
         /// <param name="data"></param>
         /// <param name="message"></param>
         /// <param name="messages"></param>
-        /// <returns>Resultado satisfactorio</returns>
+        /// <returns>Successful response</returns>
         public static Response<T> Successful(T data, string message, IList<string>? messages = null)
         {
             return new Response<T>
@@ -32,11 +32,11 @@ namespace LevoApps.Common.Status
         }
 
         /// <summary>
-        /// Devuelve un resultado neutro de una operación que no tiene ningún estado safistactorio.
+        /// Returns a neutral result of an operation that has no safest state.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="messages"></param>
-        /// <returns>Resultado neutro</returns>
+        /// <returns>Neutral response</returns>
         public new static Response<T> Nothing(string message, IList<string>? messages = null)
         {
             return new Response<T>
@@ -48,12 +48,12 @@ namespace LevoApps.Common.Status
         }
 
         /// <summary>
-        /// Devuelve un resultado fallido con posible excepción obtenida.
+        /// Returns a failed result with possible exception raised.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="messages"></param>
-        /// <returns>Resultado de error</returns>
-        public new static Response<T> Fail(Exception? exception, string message = "", IList<string>? messages = null)
+        /// <returns>Error response</returns>
+        public static new Response<T> Fail(string message = "", Exception? exception = null, IList<string>? messages = null)
         {
             return new Response<T>
             {
@@ -66,7 +66,7 @@ namespace LevoApps.Common.Status
     }
 
     /// <summary>
-    /// Comparte el estado de operación de un método.
+    /// Shares the operational status of a method.
     /// </summary>
     public class Response
     {
@@ -76,34 +76,34 @@ namespace LevoApps.Common.Status
         public Exception? Exception { get; set; }
 
         /// <summary>
-        /// Devuelve un resultado satisfactorio de un método.
+        /// Returns a successful result of a method.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="messages"></param>
-        /// <returns>Resultado satisfactorio</returns>
+        /// <returns>Successful response</returns>
         public static Response Successful(string message, IList<string>? messages = null)
         {
             return new Response { IsSuccess = true, Message = message, Messages = messages };
         }
 
         /// <summary>
-        /// Devuelve un resultado neutro de una operación que no tiene ningún estado safistactorio.
+        /// Returns a neutral result of an operation that has no safest state.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="messages"></param>
-        /// <returns>Resultado neutro</returns>
+        /// <returns>Neutral response</returns>
         public static Response Nothing(string message, IList<string>? messages = null)
         {
             return new Response { IsSuccess = false, Message = message, Messages = messages };
         }
 
         /// <summary>
-        /// Devuelve un resultado fallido con posible excepción obtenida.
+        /// Returns a failed result with possible exception raised.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="messages"></param>
-        /// <returns>Resultado de error</returns>
-        public static Response Fail(Exception? exception, string message = "", IList<string>? messages = null)
+        /// <returns>Error response</returns>
+        public static Response Fail(string message = "", Exception? exception = null, IList<string>? messages = null)
         {
             return new Response
             {

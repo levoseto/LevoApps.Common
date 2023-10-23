@@ -1,7 +1,7 @@
-﻿namespace LevoApps.Common.Status
+﻿namespace LevoApps.Common
 {
     /// <summary>
-    /// Solicitud a enviar en caso de que se desee consultar datos con información especial.
+    /// Request to be sent in case you wish to consult data with special information.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Request<T> : Request
@@ -13,13 +13,13 @@
     }
 
     /// <summary>
-    /// Solicitud a enviar en caso de que se desee consultar datos.
+    /// Request to be sent in case you wish to consult data.
     /// </summary>
     public class Request
     {
         /// <summary>
-        /// Cliente que consume el servicio.
+        /// Client application consuming the service.
         /// </summary>
-        public string? DescripcionCliente { get; set; }
+        public string? ClientApp { get; set; }
     }
 }
